@@ -4,7 +4,9 @@ services:
   nginxtest:
     image: nginx
     environment:
-      - VIRTUAL_HOST=nginxtest.local
+      - VIRTUAL_HOST=darkgenesis.de
+      - LETSENCRYPT_HOST=darkgenesis.de
+      - LETSENCRYPT_EMAIL=maikhilker89@gmail.com
 
   nginx:
     image: nginx
@@ -16,6 +18,8 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - ./certs/:/etc/nginx/certs:ro
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
 
   dockergen:
     image: jwilder/docker-gen
@@ -27,6 +31,8 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./certs/:/etc/nginx/certs:ro
       - ./config/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl
+    labels:
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
