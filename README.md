@@ -28,5 +28,6 @@ Start the stack with `docker stack rm`:
 docker stack rm proxy
 ```
 
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [nginx-proxy]: https://github.com/jwilder/nginx-proxy
 [letsencrypt-companion]: https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion
