@@ -12,7 +12,7 @@ Get the latest `nginx.tmpl` file.
 wget https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl
 ```
 
-# Start
+## Start
 
 Start the stack with `docker stack deploy`:
 
@@ -20,7 +20,7 @@ Start the stack with `docker stack deploy`:
 docker stack deploy proxy --compose-file docker-compose.yml
 ```
 
-# Stop
+## Stop
 
 Start the stack with `docker stack rm`:
 
