@@ -1,6 +1,13 @@
 version: '3'
 services:
 
+  nginxtest:
+    image: nginx
+    environment:
+      - VIRTUAL_HOST=darkgenesis.de
+      - LETSENCRYPT_HOST=darkgenesis.de
+      - LETSENCRYPT_EMAIL=maikhilker89@gmail.com
+
   nginx:
     image: nginx
     ports:
@@ -9,8 +16,7 @@ services:
     volumes:
       - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - certs:/etc/nginx/certs:ro
+      - certs:/etc/nginx/certs
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
       - com.github.helder.docker_gen.nginx_proxy=true
@@ -21,8 +27,7 @@ services:
     volumes:
       - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - certs:/etc/nginx/certs:ro
+      - certs:/etc/nginx/certs
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
     labels:
@@ -33,12 +38,10 @@ services:
     volumes:
       - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
   conf:
   vhost:
-  html:
   certs:
