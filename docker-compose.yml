@@ -43,8 +43,6 @@ services:
       - html:/usr/share/nginx/html:rw
       - /root/certs/:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    environment:
-      - ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory
     restart: unless-stopped
     depends_on:
       - nginx
