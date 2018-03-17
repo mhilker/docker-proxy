@@ -14,6 +14,7 @@ services:
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true
       - com.github.helder.docker_gen.nginx_proxy=true
+    restart: always
 
   dockergen:
     image: helder/docker-gen
@@ -26,6 +27,7 @@ services:
       - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
     labels:
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen=true
+    restart: always
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -37,6 +39,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory
+    restart: always
 
 volumes:
   conf:
