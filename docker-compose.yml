@@ -21,6 +21,7 @@ services:
     volumes:
       - conf:/etc/nginx/conf.d:rw
       - vhost:/etc/nginx/vhost.d:rw
+      - /root/certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
     labels:
