@@ -16,7 +16,7 @@ services:
       - com.github.helder.docker_gen.nginx_proxy=true
     restart: unless-stopped
     networks:
-      - nginx-proxy
+      - proxy
 
   dockergen:
     image: helder/docker-gen
@@ -33,7 +33,7 @@ services:
     depends_on:
       - nginx
     networks:
-      - nginx-proxy
+      - proxy
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -48,7 +48,7 @@ services:
       - nginx
       - dockergen
     networks:
-      - nginx-proxy
+      - proxy
 
 volumes:
   conf:
@@ -56,6 +56,6 @@ volumes:
   html:
 
 networks:
-  nginx-proxy:
+  proxy:
     external:
-      name: "nginx-proxy"
+      name: "proxy"
